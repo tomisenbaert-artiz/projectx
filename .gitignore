@@ -1,0 +1,18 @@
+# Ignore the database data
+strapi-db-data/
+
+# Ignore Node dependencies
+node_modules/
+apps/backend/node_modules/
+
+# Ignore Strapi build folders
+apps/backend/.cache/
+apps/backend/build/
+apps/backend/.tmp/
+
+# Ignore environment variables (security)
+.env
+apps/backend/.env
+
+# Mac system files
+.DS_Store
