@@ -16,3 +16,8 @@ apps/backend/.env
 
 # Mac system files
 .DS_Store
+
+# Strapi exports and backups
+*.tar.gz.enc
+backup.tar.gz
+apps/backend/export/
