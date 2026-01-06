@@ -1,0 +1,51 @@
+services:
+  # --- FRONTEND ---
+  frontend:
+    image: nginx:alpine
+    container_name: frontend-app
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - ./apps/frontend:/usr/share/nginx/html
+
+  # --- BACKEND (KICKSTART MODE) ---
+  strapi-app:
+    image: node:20-alpine
+    container_name: strapi-app
+    platform: linux/arm64
+    working_dir: /opt/app
+    ports:
+      - "1337:1337"
+    volumes:
+      - ./apps/backend:/opt/app
+    environment:
+      DATABASE_CLIENT: postgres
+      DATABASE_HOST: strapi-db
+      DATABASE_PORT: 5432
+      DATABASE_NAME: strapi
+      DATABASE_USERNAME: strapi
+      DATABASE_PASSWORD: password123
+    # Keeps the container running so we can exec into it
+    command: npm run develop 
+    depends_on:
+      strapi-db:
+        condition: service_healthy
+
+  # --- DATABASE ---
+  strapi-db:
+    image: postgres:16-alpine
+    container_name: strapi-db
+    platform: linux/arm64
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: strapi
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: strapi
+    volumes:
+      - ./strapi-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U strapi -d strapi"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
