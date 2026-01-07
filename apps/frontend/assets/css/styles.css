@@ -1,0 +1,625 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 3.5rem;
+
+  /*========== Colors ==========*/
+  /*Color mode HSL(hue, saturation, lightness)*/
+  --black-color: hsl(220, 24%, 12%);
+  --black-color-light: hsl(220, 24%, 15%);
+  --white-color-dark: hsla(0, 0%, 88%, 0.979);
+  --black-color-lighten: hsl(220, 20%, 18%);
+  --white-color: #fff;
+  --body-color: hsl(220, 100%, 97%);
+
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --body-font: "Montserrat", sans-serif;
+  --normal-font-size: .938rem;
+
+  /*========== Font weight ==========*/
+  --font-regular: 400;
+  --font-semi-bold: 600;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+/*========== Responsive typography ==========*/
+@media screen and (min-width: 1024px) {
+  :root {
+    --normal-font-size: 1rem;
+  }
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  background-color: var(--body-color);
+  background: url("/assets/img/achtergrond-opacity25percent.png") center/cover no-repeat;
+}
+
+img.logo {
+  height: 55px;
+}
+
+ul {
+  list-style: none;
+  /* Color highlighting when pressed on mobile devices */
+  /*-webkit-tap-highlight-color: transparent;*/
+}
+
+a {
+  text-decoration: none;
+}
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+.container {
+  max-width: 1120px;
+  margin-inline: 1.5rem;
+}
+
+
+
+/*=============== HEADER ===============*/
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--white-color);
+  box-shadow: 0 2px 16px hsla(220, 32%, 8%, .3);
+  z-index: var(--z-fixed);
+}
+
+/*=============== NAV ===============*/
+.nav {
+  height: var(--header-height);
+}
+
+.nav__logo, 
+.nav__burger, 
+.nav__close {
+  color: var(--black-color);
+  
+}
+
+.nav__data {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav__logo {
+  display: inline-flex;
+  align-items: center;
+  column-gap: .25rem;
+  font-weight: var(--font-semi-bold);
+  /* Color highlighting when pressed on mobile devices */
+  /*-webkit-tap-highlight-color: transparent;*/
+}
+
+.nav__logo i {
+  font-weight: initial;
+  font-size: 1.25rem;
+}
+
+.nav__toggle {
+  position: relative;
+  width: 32px;
+  height: 32px;
+}
+
+.nav__burger, 
+.nav__close {
+  position: absolute;
+  width: max-content;
+  height: max-content;
+  inset: 0;
+  margin: auto;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: opacity .1s, transform .4s;
+}
+
+.nav__close {
+  opacity: 0;
+}
+
+/*=============== COLUMNS ===============*/
+
+/* Flexbox Container for Columns */
+.row {
+    display: flex; /* Enables Flexbox */
+    justify-content: space-between; /* Spreads the columns out */
+    max-width: 1200px; /* Limits the container width */
+    margin: 100px auto; /* Centers the container */
+    
+}
+
+/* Individual Column Styling */
+.column {
+    /* flex-grow: 1; Makes all columns take equal available space */
+    /* flex-basis: 30%; Gives a starting width of 30% */
+    flex: 1; /* Shorthand for flex-grow: 1, flex-shrink: 1, flex-basis: 0% (or use 30% for cleaner spacing) */
+    
+    margin: 0 10px; /* Space between columns */
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    opacity: 0.8;
+}
+
+/* Column Title Styling */
+.column h3 {
+    color: #000000;
+    border-bottom: 2px solid #000000;
+    padding-bottom: 5px;
+    margin-top: 0;
+}
+
+/* --- NEW Button Styling --- */
+
+.button {
+    /* Style the link as a button */
+    display: inline-block; /* Allows setting width and padding */
+    padding: 10px 20px;
+    margin-top: 15px; /* Space above the button */
+    background-color: #28a745; /* Green background */
+    color: white;
+    text-align: center;
+    text-decoration: none; /* Removes the underline from the link */
+    border-radius: 5px;
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.button:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+/* Media Query for Responsiveness */
+/* Stacks the columns vertically on small screens (like phones) */
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column; /* Stacks items on top of each other */
+        padding: 0;
+    }
+
+    .column {
+        margin: 10px 20px; /* More vertical margin */
+    }
+}
+
+/*=============== END COLUMNS ===============*/
+
+/*=============== FOOTER ===============*/
+
+.footer {
+  background-color: var(--white-color);
+  color: var(--black-color);
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 2rem;
+  max-width: 1200px; /* Limits the container width */
+  margin: 100px auto; /* Centers the container */
+  padding: 10px 10px; /* Inner padding on the sides */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  opacity: 0.8;
+}
+
+.footer__logo {
+  height: 100px;
+  
+}
+
+
+
+/* Navigation for mobile devices */
+@media screen and (max-width: 1118px) {
+  .nav__menu {
+    position: absolute;
+    left: 0;
+    top: 2.5rem;
+    width: 100%;
+    height: calc(100vh - 3.5rem);
+    overflow: auto;
+    pointer-events: none;
+    opacity: 0;
+    transition: top .4s, opacity .3s;
+  }
+  .nav__menu::-webkit-scrollbar {
+    width: 0;
+  }
+  .nav__list {
+    background-color: var(--white-color);
+    padding-top: 1rem;
+  }
+}
+
+.nav__link {
+  color: var(--black-color);
+  background-color: var(--white-color);
+  font-weight: var(--font-semi-bold);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  column-gap: .5rem; /* toegevoegd voor ruimte tss icoon en tekst in mobiel menu */
+  justify-content: left; /* space-between */
+  align-items: center;
+  transition: background-color .3s;
+}
+
+.nav__link:hover {
+  background-color: var(--white-color-dark);
+}
+
+/* Show menu */
+.show-menu {
+  opacity: 1;
+  top: 3.5rem;
+  pointer-events: initial;
+}
+
+/* Show icon */
+.show-icon .nav__burger {
+  opacity: 0;
+  transform: rotate(90deg);
+}
+.show-icon .nav__close {
+  opacity: 1;
+  transform: rotate(90deg);
+}
+
+/*=============== DROPDOWN ===============*/
+.dropdown__item {
+  cursor: pointer;
+}
+
+.dropdown__arrow {
+  font-size: 1.25rem;
+  font-weight: initial;
+  transition: transform .4s;
+}
+
+.dropdown__link, 
+.dropdown__sublink {
+  padding: 1.25rem 1.25rem 1.25rem 2.5rem;
+  color: var(--black-color);
+  background-color: var(--white-color);
+  display: flex;
+  align-items: center;
+  column-gap: .5rem;
+  font-weight: var(--font-semi-bold);
+  transition: background-color .3s;
+}
+
+.dropdown__link i, 
+.dropdown__sublink i {
+  font-size: 1.25rem;
+  font-weight: initial;
+}
+
+.dropdown__link:hover, 
+.dropdown__sublink:hover {
+  background-color: var(--white-color);
+}
+
+.dropdown__menu, 
+.dropdown__submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .4s ease-out;
+}
+
+/* Show dropdown menu & submenu */
+.dropdown__item:hover .dropdown__menu, 
+.dropdown__subitem:hover > .dropdown__submenu {
+  max-height: 1000px;
+  transition: max-height .4s ease-in;
+}
+
+/* Rotate dropdown icon */
+.dropdown__item:hover .dropdown__arrow {
+  transform: rotate(180deg);
+}
+
+/*=============== DROPDOWN SUBMENU ===============*/
+.dropdown__add {
+  margin-left: auto;
+}
+
+.dropdown__sublink {
+  background-color: var(--white-color-dark);
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For small devices */
+@media screen and (max-width: 340px) {
+  .container {
+    margin-inline: 1rem;
+  }
+
+  .nav__link {
+    padding-inline: 1rem;
+  }
+}
+
+/* For large devices */
+@media screen and (min-width: 1118px) {
+  .container {
+    margin-inline: auto;
+  }
+
+  img.logo {
+    height: 88px;
+  }
+
+  .nav {
+    height: calc(var(--header-height) + 2rem);
+    /*height: var(--header-height);*/
+    display: flex;
+    justify-content: space-between;
+  }
+  .nav__toggle {
+    display: none;
+  }
+  .nav__list {
+    height: 100%;
+    display: flex;
+    column-gap: 3rem;
+  }
+  .nav__link {
+    height: 100%;
+    padding: 0;
+    justify-content: initial;
+    column-gap: .25rem;
+  }
+  .nav__link:hover {
+    background-color: transparent;
+  }
+
+  .dropdown__item, 
+  .dropdown__subitem {
+    position: relative;
+  }
+
+  .dropdown__menu, 
+  .dropdown__submenu {
+    max-height: initial;
+    overflow: initial;
+    position: absolute;
+    left: 0;
+    top: 6rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s, top .3s;
+  }
+
+  .dropdown__link, 
+  .dropdown__sublink {
+    padding-inline: 1rem 3.5rem;
+  }
+
+  .dropdown__subitem .dropdown__link {
+    padding-inline: 1rem;
+  }
+
+  .dropdown__submenu {
+    position: absolute;
+    left: 100%;
+    top: .5rem;
+  }
+
+  /* Show dropdown menu */
+  .dropdown__item:hover .dropdown__menu {
+    opacity: 1;
+    top: 5.5rem;
+    pointer-events: initial;
+    transition: top .3s;
+  }
+
+  /* Show dropdown submenu */
+  .dropdown__subitem:hover > .dropdown__submenu {
+    opacity: 1;
+    top: 0;
+    pointer-events: initial;
+    transition: top .3s;
+  }
+}
+
+/*=============== ARTICLES ===============*/
+.articles {
+  padding: 3rem 1.5rem;
+  
+  margin-top: 2rem;
+}
+
+.articles__container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.articles__title {
+  font-size: 2rem;
+  font-weight: var(--font-semi-bold);
+  color: var(--black-color);
+  margin-bottom: 2rem;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.articles__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.article__card {
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  background-color: var(--white-color);
+}
+
+.article__card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.article__image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Responsive Articles */
+@media screen and (max-width: 768px) {
+  .articles {
+    padding: 2rem 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .articles__title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .articles__grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .article__image {
+    height: auto;
+  }
+
+  .article__card:hover {
+    transform: translateY(-4px);
+  }
+}
+
+/*=============== FOOTER ===============*/
+.footer {
+  background-color: var(--white-color);
+  color: var(--white-color-dark);
+  padding: 5px;
+  margin-top: 0;
+}
+
+.footer__container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 10px 10px;
+  align-items: center;
+}
+
+.footer__left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer__logo {
+  max-width: 120px;
+  height: auto;
+  display: block;
+  
+}
+
+.footer__content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.footer__section {
+  text-align: left;
+}
+
+.footer__title {
+  font-size: 1rem;
+  font-weight: var(--font-semi-bold);
+  margin-bottom: 0.5rem;
+  color: var(--black-color);
+}
+
+.footer__text {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--black-color);
+}
+
+.footer__text a {
+  color: var(--black-color);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer__text a:hover {
+  color: var(--black-color);
+}
+
+.footer__bottom {
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0rem 0rem 0;
+}
+
+.footer__copyright {
+  color: var(--black-color);
+  font-size: 0.7rem;
+}
+
+/* Responsive Footer */
+@media screen and (max-width: 768px) {
+  .footer__container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .footer__left {
+    justify-content: center;
+  }
+
+  .footer__logo {
+    max-width: 100px;
+  }
+
+  .footer__content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .footer__section {
+    text-align: center;
+  }
+
+  .footer__bottom {
+    text-align: center;
+  }
+
+  .footer {
+    padding: 2rem 0;
+    margin-top: 2rem;
+  }
+}
