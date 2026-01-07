@@ -8,6 +8,8 @@ services:
       - "8080:80"
     volumes:
       - ./apps/frontend:/usr/share/nginx/html
+      # ADD CUSTOM NGINX CONFIG
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
 
   # --- BACKEND (KICKSTART MODE) ---
   strapi-app:
