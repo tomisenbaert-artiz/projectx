@@ -21,3 +21,4 @@ apps/backend/.env
 *.tar.gz.enc
 backup.tar.gz
 apps/backend/export/
+metadata.json
