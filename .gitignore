@@ -17,6 +17,9 @@ apps/backend/.env
 # Mac system files
 .DS_Store
 
+# Ngingx backupped config file
+default_.conf
+
 # Strapi exports and backups
 *.tar.gz.enc
 backup.tar.gz
