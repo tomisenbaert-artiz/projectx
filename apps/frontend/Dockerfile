@@ -1,23 +1,12 @@
-# STAGE 1: Build the React/Vue/Static app
-FROM node:18-slim AS build-step
-WORKDIR /app
-COPY frontend/package*.json ./
-RUN npm install
-COPY frontend/ . 
-RUN npm run build 
-
-# STAGE 2: Serve with Nginx
+# Use the lightweight Nginx Alpine image
 FROM nginx:alpine
 
-# 1. Update Nginx to listen on 8080 (Cloud Run's default)
-RUN sed -i 's/listen\(.*\)80;/listen 8080;/g' /etc/nginx/conf.d/default.conf
-
-# 2. Copy your custom config (Ensure this config also uses 8080!)
+# Copy your custom config from the /nginx directory
+# (Note: In your Cloud Build step, we will set the context to the root)
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
 
-# 3. Copy ONLY the built static files from Stage 1
-# Note: Change 'dist' to 'build' if you are using Create React App
-COPY --from=build-step /app/dist /usr/share/nginx/html
+# Copy your static frontend files
+COPY frontend/ /usr/share/nginx/html
 
 EXPOSE 8080
 
